@@ -31,13 +31,29 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	//db
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	runtimeOnly 'org.postgresql:postgresql'
+	testRuntimeOnly 'org.postgresql:postgresql'
+	// DB migration
+	implementation 'org.flywaydb:flyway-core'
+
+	// AWS SDK v2 - S3 & Presigner
+	implementation 'software.amazon.awssdk:s3'
+	implementation 'software.amazon.awssdk:s3-transfer-manager' // (선택) 대용량/멀티파트
+	implementation 'software.amazon.awssdk:s3-presigner'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+test {
+	systemProperty "spring.profiles.active", "rds"
+}
+
