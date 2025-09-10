@@ -44,10 +44,9 @@ dependencies {
 	implementation 'org.flywaydb:flyway-core'
 
 	// AWS SDK v2 - S3 & Presigner
-	implementation platform("software.amazon.awssdk:bom:2.25.67")
 	implementation 'software.amazon.awssdk:s3'
 	implementation 'software.amazon.awssdk:s3-transfer-manager' // (선택) 대용량/멀티파트
-	implementation 'software.amazon.awssdk:s3-presigner'
+	//implementation 'software.amazon.awssdk:s3-presigner'
 }
 
 tasks.named('test') {
@@ -60,6 +59,6 @@ test {
 
 dependencyManagement {
 	imports {
-		mavenBom "software.amazon.awssdk:bom:2.25.67"
+		mavenBom "software.amazon.awssdk:bom:2.33.5"
 	}
 }
